@@ -7,3 +7,17 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Ong {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  zipCode   String   @map("zip_code")
+  address   String
+  latitude  Float
+  longitude Float
+  phone     String
+  password  String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+}

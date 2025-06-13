@@ -3,6 +3,12 @@ import { Ong, Prisma } from 'generated/prisma';
 import { OngRepository } from './_ong.repository';
 
 export class PrismaOngRepository implements OngRepository {
+  async findById(id: string): Promise<Ong | null> {
+    const ong = await prisma.ong.findUnique({ where: { id } });
+
+    return ong;
+  }
+
   async findByEmail(email: string): Promise<Ong | null> {
     const ong = await prisma.ong.findUnique({ where: { email } });
 

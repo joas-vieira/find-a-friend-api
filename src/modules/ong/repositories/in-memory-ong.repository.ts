@@ -5,6 +5,12 @@ import { randomUUID } from 'node:crypto';
 export class InMemoryOngRepository implements OngRepository {
   private items: Ong[] = [];
 
+  async findById(id: string): Promise<Ong | null> {
+    const ong = this.items.find((item) => item.id === id);
+
+    return ong ?? null;
+  }
+
   async findByEmail(email: string): Promise<Ong | null> {
     const ong = this.items.find((item) => item.email === email);
 

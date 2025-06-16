@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE "Ong" (
+CREATE TABLE "ongs" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
@@ -12,8 +12,8 @@ CREATE TABLE "Ong" (
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "Ong_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "ongs_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Ong_email_key" ON "Ong"("email");
+CREATE UNIQUE INDEX "ongs_email_key" ON "ongs"("email");

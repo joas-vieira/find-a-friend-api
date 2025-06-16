@@ -20,4 +20,25 @@ model Ong {
   password  String
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+  pets Pet[]
+
+  @@map("ongs")
+}
+
+model Pet {
+  id          String   @id @default(uuid())
+  name        String
+  about       String
+  age         String
+  size        String
+  energyLevel String   @map("energy_level")
+  environment String
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  ongId String @map("ong_id")
+  ong   Ong    @relation(fields: [ongId], references: [id])
+
+  @@map("pets")
 }

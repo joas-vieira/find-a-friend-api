@@ -1,15 +1,18 @@
 import { ResourceNotFoundError } from '@/errors/resource-not-found.error';
+import { InMemoryOngRepository } from '@/modules/ong/repositories/in-memory-ong.repository';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { PetRepository } from '../../repositories/_pet.repository';
 import { InMemoryPetRepository } from '../../repositories/in-memory-pet.repository';
 import { GetPetUseCase } from '../get-pet.use-case';
 
 describe('GetPetUseCase', () => {
+  let ongRepository: InMemoryOngRepository;
   let petRepository: PetRepository;
   let sut: GetPetUseCase;
 
   beforeEach(() => {
-    petRepository = new InMemoryPetRepository();
+    ongRepository = new InMemoryOngRepository();
+    petRepository = new InMemoryPetRepository(ongRepository);
     sut = new GetPetUseCase(petRepository);
   });
 

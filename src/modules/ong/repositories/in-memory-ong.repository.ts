@@ -3,7 +3,7 @@ import { OngRepository } from './_ong.repository';
 import { randomUUID } from 'node:crypto';
 
 export class InMemoryOngRepository implements OngRepository {
-  private items: Ong[] = [];
+  items: Ong[] = [];
 
   async findById(id: string): Promise<Ong | null> {
     const ong = this.items.find((item) => item.id === id);
@@ -19,7 +19,7 @@ export class InMemoryOngRepository implements OngRepository {
 
   async create(data: Prisma.OngCreateInput): Promise<Ong> {
     const ong: Ong = {
-      id: randomUUID(),
+      id: data.id ?? randomUUID(),
       name: data.name,
       email: data.email,
       zipCode: data.zipCode,

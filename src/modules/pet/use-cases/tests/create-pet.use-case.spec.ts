@@ -2,13 +2,16 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { PetRepository } from '../../repositories/_pet.repository';
 import { InMemoryPetRepository } from '../../repositories/in-memory-pet.repository';
 import { CreatePetUseCase } from '../create-pet.use-case';
+import { InMemoryOngRepository } from '@/modules/ong/repositories/in-memory-ong.repository';
 
 describe('CreatePetUseCase', () => {
+  let ongRepository: InMemoryOngRepository;
   let petRepository: PetRepository;
   let sut: CreatePetUseCase;
 
   beforeEach(() => {
-    petRepository = new InMemoryPetRepository();
+    ongRepository = new InMemoryOngRepository();
+    petRepository = new InMemoryPetRepository(ongRepository);
     sut = new CreatePetUseCase(petRepository);
   });
 
